@@ -1,0 +1,111 @@
+INTRODUCTION
+------------
+Paragraph Adjuster with Hyphenation (PAwH) is a small Perl script that
+reformats  lines of ASCII text so that the resulting lines are  justi-
+fied  in  any  of  the following  formats:  left-justified  (default),
+right-justified, centered, or both left- and right-justified. PAwH has
+various  switches, most are optional, to control its output. The  only
+mandatory switch is the line width (--width). For PAwH to work proper-
+ly, input paragraphs must be separated by blank lines.
+
+
+USAGE
+-----
+You can use PAwH in any of two ways:
+
+./paradj.pl --width=n [options] file1 [file2 file3 ...]
+
+or
+
+cat file1 [file2 file3 ...] | ./paradj.pl --width=n [options]
+
+where file1, file2, file3, and so on, are the files to be reformatted.
+There's only one output, though.
+
+
+SWITCHES
+--------
+The available switches are:
+
+--width=n (or -w=n or -w n)
+    Line width is n chars long
+
+--left (or -l)
+    Output is left-justified (default)
+
+--right (or -r)
+    Output is right-justified
+
+--centered (or -c)
+    Output is centered
+
+--both (or -b)
+    Output is both left- and right-justified
+
+--indent=n (or -i=n or -i n)
+    Leave n spaces for initial indention (defaults to 0)
+
+--newline (or -n)
+    Insert blank lines between paragraphs
+
+--hyphenate (or -h)
+    Hyphenate word that doesn't fit on a line
+
+
+EXAMPLES
+--------
+The  following command reformats the file, LICENSE (it comes with this
+distribution),  so that the line width is at most 70 characters,  both
+left-  and right-justified, with blank lines inserted between consecu-
+tive  paragraphs,  and words are hyphenated when they can't fit  on  a
+line.
+
+paradj.pl --width=70 --both --newline --hyphenate LICENSE
+
+You can also use the shortened version:
+
+paradj.pl -w=70 -b -n -h LICENSE
+
+If  you  want to indent each paragraph, just use the --indent  switch.
+Say, you want to indent the LICENSE file with 4 leading spaces, type:
+
+paradj.pl --width=70 --both --newline --hyphenate --indent=4 LICENSE
+
+or
+
+paradj.pl -w=70 -b -n -h -i=4 LICENSE
+
+
+GUI VERSION
+-----------
+There  is  also  a Perl/Tk version of  paradj.pl,  paradj-tk.pl.  This
+Perl/Tk  version  is  less  flexible than  the  command-line  version,
+though, because it can only read one file at a time.
+
+
+REQUIREMENT
+-----------
+You  need Jan Pazdziora's Perl module, TeX::Hyphen, available from the
+Comprehensive Perl Archive Network (CPAN), to use the hyphenation fea-
+ture. I have included TeX::Hyphen with this distribution for your con-
+venience only; you are encouraged to check out the latest version from
+CPAN.
+
+For  Windows  users,  you can install TeX::Hyphen by  following  these
+steps:
+
+1. Uncompress the TeX::Hyphen module, TeX-Hyphen-0.140.tar.gz.
+
+2.  Descend (cd) into the TeX-Hyphen-0.140/lib and copy the TeX direc-
+tory into <Perl directory>\lib. For example, if your Perl binaries are
+installed on E:\Perl, copy the TeX directory into E:\Perl\lib.
+
+
+COPYRIGHT AND LICENSE
+---------------------
+Copyright  (C)  2003  Julius C. Duque. Please read  contact.html  that
+comes with this distribution for details on how to contact the author.
+
+This  library is free software; you can redistribute it and/or  modify
+it under the same terms as the GNU General Public License.
+
